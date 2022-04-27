@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Teacher's HomePage
+{% endblock %}
+
+
+
+{% block body %}
+<h3>Logged In: <b style="color: brown;"> {{ request.user.username }}</b></h3>
+<div class="container" style="padding-top: 20px;">
+<div class="row row-cols-3">
+
+    {% for i in schools %}
+
+    <div class="col">
+        <div class="card-group">
+            <div class="card">
+                <div class="card-body">
+                    <a style=" text-decoration: none;" href="/teacher_school_detail/{{i.id}}">
+                        <h1 style="color: black;">{{i.school_name}}</h1>
+                    </a></h5><br>
+                    Admin:<a style=" text-decoration: none;" href="">
+                        <h3 class="card-category"> {{i.admin_id}}</h2>
+                    </a>
+                    {% if not request.user.has_school %}
+                    {% if not request.user.is_superuser %}
+                    <a href="{% url 'TeacherAddToExistingSchool' i.id %}"><button type="button" class="btn btn-info">Join {{i.school_name}}</button></a>
+                    {% endif %}
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {% endfor %}
+</div>
+</div>
+{% endblock %}
