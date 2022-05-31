@@ -1,0 +1,7 @@
+.details{
+    display: none;
+}
+
+.details-show{
+    display: contents;
+}
