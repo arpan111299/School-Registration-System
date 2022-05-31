@@ -1,1 +1,0 @@
-from schoolApp.views import *
